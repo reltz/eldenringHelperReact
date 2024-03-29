@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { IncantationTable } from './components/incantation-table';
+import { SorceriesTable } from './components/sorceries-table';
+import { BrowserRouter as Router, Routes,  Route, Link } from 'react-router-dom';
+
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <IncantationTable /> */}
+      <Router>
+      <div className="navbar"> {/* Add the navbar class */}
+        <nav>
+          <ul>
+            <li>
+              <Link to="/incantations">Incantations</Link>
+            </li>
+            <li>
+              <Link to="/sorceries">Sorceries</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div>
+        <Routes>
+          <Route path="/incantations" element={<IncantationTable />} />
+          <Route path="/sorceries" element={<SorceriesTable />} />
+        </Routes>
+      </div>
+    </Router>
     </div>
   );
 }

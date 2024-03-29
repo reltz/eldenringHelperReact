@@ -36,3 +36,68 @@
     transform: rotate(360deg);
   }
 }
+
+.img-container {
+  width: 200px; /* Set the width */
+  height: 200px; /* Set the height */
+  margin: 20px;
+}
+
+.img-container img {
+  width: 100%; /* Make the image fill the container horizontally */
+  height: 100%; /* Make the image fill the container vertically */
+  object-fit: cover; /* Maintain aspect ratio and cover the container */
+}
+
+.table-container {
+  border-style: solid;
+  margin: 100px;
+  width: 40%;
+  align-items: center;
+  padding: 30px;
+}
+
+.items-table {
+  border-collapse: separate; /* Ensure border-spacing works */
+  border-spacing: 10px;
+  border-style: solid;
+  min-width: 100%;
+}
+
+
+.table-header {
+  color: white;
+  background-color: #282c34 ;
+  height: 3em;
+  font-size: 1.2em;
+}
+
+/*
+NAVIGATION
+*/
+/* App.css */
+
+.navbar {
+  background-color: #333;
+  padding: 10px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  display: inline;
+  margin-right: 10px;
+}
+
+.navbar li a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar li a:hover {
+  color: lightgray;
+}
