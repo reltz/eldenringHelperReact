@@ -1,3 +1,7 @@
+import { toast } from "react-toastify";
+import Toast from "./toast";
+import { useState } from "react";
+
 export interface TableProps {
     items: Item[];
     save: (items: Item[]) => void;
@@ -24,12 +28,26 @@ export function Table(props: TableProps) {
 
     const handleSaveClick = () => {
         props.save(items);
+        toast.success('Items saved successfully');
     }
 
+    // Sort toggle
+    const [sortOrder, setSortOrder] = useState<'checked' | 'unchecked'>('checked');
+
+    const toggleSortOrder = () => {
+        setSortOrder(sortOrder === 'checked' ? 'unchecked' : 'checked');
+    };
+
+    // Filter items based on the current sort order
+    const sortedItems = sortOrder === 'checked' ? items.filter(item => item.checked) : items.filter(item => !item.checked);
+    // end of sort
 
     return (
         <div className='table-container' >
-            <button onClick={handleSaveClick}>SAVE</button>
+            <button className="action-button save-button" onClick={handleSaveClick}>SAVE</button>
+            <button onClick={toggleSortOrder} className="action-button">
+                {sortOrder === 'checked' ? 'Show Unchecked' : 'Show Checked'}
+            </button>
             <table aria-label="simple table" className='items-table'>
                 <thead className="table-header">
                     <tr>
@@ -54,7 +72,7 @@ export function Table(props: TableProps) {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.items.map((row, index) => (
+                    {sortedItems.map((row, index) => (
                         <tr key={row.id}>
                             <td scope="row">
                                 {row.name}
@@ -72,11 +90,15 @@ export function Table(props: TableProps) {
                                 <img src={row.image ? row.image : ''} alt="potato" />
                             </td>
                             <td align="right">
-                                <input
-                                    type="checkbox"
-                                    checked={row.checked || false}
-                                    onChange={() => handleCheckboxChange(row.id)}
-                                />
+                                <div className="checkbox-container">
+                                    <input
+                                        type="checkbox"
+                                        id={row.id}
+                                        className="checkbox-custom"
+                                        checked={row.checked || false}
+                                        onChange={() => handleCheckboxChange(row.id)}
+                                    />
+                                </div>
                             </td>
                         </tr>
                     ))}

@@ -1,4 +1,6 @@
 import { Item } from "../components/table";
+import sorceriesDB from "../data/sorceries.json";
+import incantationsDB from "../data/incantations.json";
 
 interface DB {
     sorceries: Item[];
@@ -15,14 +17,21 @@ export class LocalStorageAdapter {
 
         if(!dbString) {
             dbString = JSON.stringify({
-                incantations: [],
-                sorceries: []
+                incantations: incantationsDB.items,
+                sorceries: sorceriesDB.items
             });
-            localStorage.setItem(this.key, JSON.stringify(dbString))
+            localStorage.setItem(this.key, dbString)
         }
         this.db = JSON.parse(dbString)
     }
 
+    public getIncantations(): Item[] {
+        return this.db.incantations;
+    }
+
+    public getSorceries(): Item[] {
+        return this.db.sorceries;
+    }
     
     public saveIncantations(incantations: Item[]) {
         this.db.incantations = incantations;

@@ -1,32 +1,28 @@
 import { useState } from 'react';
-import incantationDB from '../data/incantations.json'
 import { Incantation } from '../models/models';
 import { Item, Table } from './table'
 import { LocalStorageAdapter } from '../adapters/local-storage-adapter';
 
 
-export function IncantationTable() {
-    
-const [items, setItems] = useState<any>(incantationDB.items);
+export function IncantationTable(props: { db: LocalStorageAdapter }) {
+    const [items, setItems] = useState<any>(props.db.getIncantations());
 
-const handleStateChange = (itemId: string, checked: boolean) => {
-    setItems((prevItems: { id: string; }[]) => {
-        return prevItems.map((item: { id: string; }) => {
-            if (item.id === itemId) {
-                return { ...item, checked };
-            }
-            return item;
+    const handleStateChange = (itemId: string, checked: boolean) => {
+        setItems((prevItems: { id: string; }[]) => {
+            return prevItems.map((item: { id: string; }) => {
+                if (item.id === itemId) {
+                    return { ...item, checked };
+                }
+                return item;
+            });
         });
-    });
-};
+    };
 
-const save = (items: Item[]) => {
-    const db = new LocalStorageAdapter();
-    db.saveIncantations(items);
-};
+    const save = (items: Item[]) => {
+        props.db.saveIncantations(items);
+    };
 
-
-return (
+    return (
         <Table save={save} handleStateChange={handleStateChange} items={items as Incantation[]}></Table>
     )
 }

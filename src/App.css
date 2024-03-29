@@ -37,6 +37,10 @@
   }
 }
 
+body {
+  background-color: #282c34;
+}
+
 .img-container {
   width: 200px; /* Set the width */
   height: 200px; /* Set the height */
@@ -50,17 +54,18 @@
 }
 
 .table-container {
-  border-style: solid;
+  /* border-style: solid; */
   margin: 100px;
-  width: 40%;
+  width: 70%;
   align-items: center;
   padding: 30px;
+  background-color: white;
 }
 
 .items-table {
   border-collapse: separate; /* Ensure border-spacing works */
   border-spacing: 10px;
-  border-style: solid;
+  /* border-style: solid; */
   min-width: 100%;
 }
 
@@ -80,6 +85,7 @@ NAVIGATION
 .navbar {
   background-color: #333;
   padding: 10px;
+  font-size: 1.5em;
 }
 
 .navbar ul {
@@ -90,7 +96,7 @@ NAVIGATION
 
 .navbar li {
   display: inline;
-  margin-right: 10px;
+margin: 20px
 }
 
 .navbar li a {
@@ -101,3 +107,81 @@ NAVIGATION
 .navbar li a:hover {
   color: lightgray;
 }
+
+
+/** save button */
+.action-button {
+  background-color: #249fc1; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 1em;
+}
+
+.action-button:hover {
+  background-color: #249fc1b7; /* Darker green on hover */
+}
+
+.save-button {
+  background-color: #4CAF50;
+}
+
+.save-button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/** check box **/
+
+/* Style for the checkbox container */
+.checkbox-container {
+  display: flex;
+  align-items: center; /* Center align items vertically */
+  justify-content: center; /* Center align items horizontally */
+}
+
+/* Hide the default checkbox */
+.checkbox-container input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 24px; /* Width of the custom checkbox */
+  height: 24px; /* Height of the custom checkbox */
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Style for the custom checkbox */
+.checkbox-container input[type="checkbox"]::before {
+  content: "";
+  display: inline-block;
+  width: 24px; /* Width of the custom checkbox */
+  height: 24px; /* Height of the custom checkbox */
+  border: 2px solid #666; /* Border color */
+  border-radius: 4px; /* Border radius */
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Style for the checked state of the custom checkbox */
+.checkbox-container input[type="checkbox"]:checked::before {
+  background-color: #45a049; /* Background color when checked */
+  border-color: #45a049; /* Border color when checked */
+}
+
+/* Style for the checkmark icon inside the custom checkbox */
+.checkbox-container input[type="checkbox"]:checked::after {
+  content: "";
+  display: inline-block;
+  width: 10px; /* Width of the checkmark icon */
+  height: 5px; /* Height of the checkmark icon */
+  border: solid #fff; /* Border color of the checkmark icon */
+  border-width: 0 2px 2px 0; /* Thickness of the checkmark lines */
+  transform: rotate(45deg); /* Rotate the checkmark icon to create a cross */
+}
+
