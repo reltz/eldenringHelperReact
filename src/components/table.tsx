@@ -6,6 +6,7 @@ export interface TableProps {
     items: Item[];
     save: (items: Item[]) => void;
     handleStateChange: (itemID: string, checked: boolean) => void
+    handleCommentChanged: (itemID: string, comment: string) => void
 }
 
 export interface Item {
@@ -13,6 +14,10 @@ export interface Item {
     name: string;
     image?: string;
     checked: boolean;
+    comment: string;
+}
+
+export interface ItemWithRequirements extends Item {
     faith?: number;
     intelligence?: number;
     arcane?: number;
@@ -20,7 +25,7 @@ export interface Item {
 
 
 export function Table(props: TableProps) {
-    const { items, handleStateChange } = props;
+    const { items, handleStateChange, handleCommentChanged } = props;
 
     const handleCheckboxChange = (id: string) => {
         handleStateChange(id, !items.find(item => item.id === id)?.checked);
@@ -69,6 +74,7 @@ export function Table(props: TableProps) {
                         <td>
                             Owned
                         </td>
+                        <td>Comments</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -100,6 +106,13 @@ export function Table(props: TableProps) {
                                     />
                                 </div>
                             </td>
+                            <td>
+                                <textarea
+                                    value={row.comment}
+                                    onChange={(e) => handleCommentChanged(row.id, e.target.value)}
+                                    className="comment-input"
+                                />
+                            </td>
                         </tr>
                     ))}
                 </tbody>
@@ -107,3 +120,9 @@ export function Table(props: TableProps) {
         </div >
     )
 }
+// \<input
+// type="text"
+// value={row.comment} // Make sure this is correctly bound to the comment in the state
+// onChange={(e) => handleCommentChange(row.id, e.target.value)} // Ensure this updates the state with the new comment value
+// className="comment-input"
+// />

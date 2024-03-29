@@ -3,7 +3,6 @@ import { Incantation } from '../models/models';
 import { Item, Table } from './table'
 import { LocalStorageAdapter } from '../adapters/local-storage-adapter';
 
-
 export function IncantationTable(props: { db: LocalStorageAdapter }) {
     const [items, setItems] = useState<any>(props.db.getIncantations());
 
@@ -18,12 +17,22 @@ export function IncantationTable(props: { db: LocalStorageAdapter }) {
         });
     };
 
+    const handleCommentChange = (itemID: string, comment: string) => {
+        const updatedItems = items.map((item: { id: string; }) => {
+          if (item.id === itemID) {
+            return { ...item, comment: comment };
+          }
+          return item;
+        });
+        setItems(updatedItems)
+      }
+
     const save = (items: Item[]) => {
         props.db.saveIncantations(items);
     };
 
     return (
-        <Table save={save} handleStateChange={handleStateChange} items={items as Incantation[]}></Table>
+        <Table save={save} handleCommentChanged={handleCommentChange} handleStateChange={handleStateChange} items={items as Incantation[]}></Table>
     )
 }
 

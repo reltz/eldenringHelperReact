@@ -1,10 +1,12 @@
 import { Item } from "../components/table";
 import sorceriesDB from "../data/sorceries.json";
 import incantationsDB from "../data/incantations.json";
+import talismanDB from "../data/talisman.json"
 
 interface DB {
     sorceries: Item[];
     incantations: Item[];
+    talismans: Item[];
     character: string;
 }
 
@@ -18,7 +20,8 @@ export class LocalStorageAdapter {
         if(!dbString) {
             dbString = JSON.stringify({
                 incantations: incantationsDB.items,
-                sorceries: sorceriesDB.items
+                sorceries: sorceriesDB.items,
+                talismans: talismanDB.items,
             });
             localStorage.setItem(this.key, dbString)
         }
@@ -32,6 +35,10 @@ export class LocalStorageAdapter {
     public getSorceries(): Item[] {
         return this.db.sorceries;
     }
+
+    public getTaslismans(): Item[] {
+        return this.db.talismans;
+    }
     
     public saveIncantations(incantations: Item[]) {
         this.db.incantations = incantations;
@@ -41,6 +48,11 @@ export class LocalStorageAdapter {
     public saveSorceries(sorceries: Item[]) {
         this.db.sorceries = sorceries;
         localStorage.setItem(this.key, JSON.stringify(this.db));
+    }
+
+    public saveTalismans(talismans: Item[]) {
+        this.db.talismans = talismans;
+        localStorage.setItem(this.key,JSON.stringify(this.db) )
     }
 
 }

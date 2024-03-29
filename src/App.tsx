@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes,  Route, Link } from 'react-router-dom'
 import { LocalStorageAdapter } from './adapters/local-storage-adapter';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { TalismanTable } from './components/talisman-table';
 
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
             <li>
               <Link to="/sorceries">Sorceries</Link>
             </li>
+            <li>
+              <Link to="/talismans">Talismans</Link>
+            </li>
           </ul>
         </nav>
       </div>
@@ -32,6 +36,7 @@ function App() {
         <Routes>
           <Route path="/incantations" element={<IncantationTable db={db} />} />
           <Route path="/sorceries" element={<SorceriesTable db={db} />} />
+          <Route path="/talismans" element={<TalismanTable db={db} />} />
         </Routes>
         <ToastContainer/>
       </div>

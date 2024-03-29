@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { Item, Table } from './table'
 import { LocalStorageAdapter } from '../adapters/local-storage-adapter';
 
-export function SorceriesTable(props: { db: LocalStorageAdapter }) {
-  // const sorted = sortItemsByField(sorceries.items, "intelligence");
+export function TalismanTable(props: {db: LocalStorageAdapter}) {
+
 
   // State to manage the checked state for each row
-  const [items, setItems] = useState<any>(props.db.getSorceries());
+  const [items, setItems] = useState<any>(props.db.getTaslismans());
 
   const handleStateChange = (itemId: string, checked: boolean) => {
     setItems((prevItems: { id: string; }[]) => {
@@ -30,7 +30,7 @@ export function SorceriesTable(props: { db: LocalStorageAdapter }) {
   }
 
   const save = (items: Item[]) => {
-    props.db.saveSorceries(items);
+    props.db.saveTalismans(items);
   };
 
   return (

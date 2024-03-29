@@ -185,3 +185,10 @@ margin: 20px
   transform: rotate(45deg); /* Rotate the checkmark icon to create a cross */
 }
 
+ /* Comment box */
+ .comment-input {
+  width: 300px; /* Adjust width as needed */
+  height: 100px; /* Adjust height as needed */
+  resize: vertical; /* Allow vertical resizing */
+  padding: 0.8em;
+}
