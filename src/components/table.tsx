@@ -39,7 +39,7 @@ export function Table(props: TableProps) {
     // Sort toggle
     const [sortOrder, setSortOrder] = useState<'checked' | 'unchecked'>('checked');
 
-    const toggleSortOrder = () => {
+    const toggleSortOrder  = () => {
         setSortOrder(sortOrder === 'checked' ? 'unchecked' : 'checked');
     };
 
@@ -48,77 +48,56 @@ export function Table(props: TableProps) {
     // end of sort
 
     return (
-        <div className='table-container' >
-            <button className="action-button save-button" onClick={handleSaveClick}>SAVE</button>
-            <button onClick={toggleSortOrder} className="action-button">
-                {sortOrder === 'checked' ? 'Show Unchecked' : 'Show Checked'}
-            </button>
-            <table aria-label="simple table" className='items-table'>
-                <thead className="table-header">
+            <div>
+              <div className="button-container">
+                <button className="action-button save-button" onClick={handleSaveClick}>SAVE</button>
+                <button onClick={toggleSortOrder} className="action-button show-checked">
+                  {sortOrder === 'checked' ? 'Show Unchecked' : 'Show Checked'}
+                </button>
+              </div>
+          
+              <div className='table-container'>
+                <table aria-label="simple table" className='items-table'>
+                  <thead className="table-header">
                     <tr>
-                        <td>
-                            Name
-                        </td>
-                        {/* <td>
-                            Faith Requirement
-                        </td>
-                        <td>
-                            Int Requirement
-                        </td>
-                        <td>
-                            Arcane Requirement
-                        </td> */}
-                        <td>
-                            Image
-                        </td>
-                        <td>
-                            Owned
-                        </td>
-                        <td>Comments</td>
+                      <td>Name</td>
+                      <td>Image</td>
+                      <td>Owned</td>
+                      <td>Comments</td>
                     </tr>
-                </thead>
-                <tbody>
+                  </thead>
+                  <tbody>
                     {sortedItems.map((row, index) => (
-                        <tr key={row.id}>
-                            <td scope="row">
-                                {row.name}
-                            </td>
-                            {/* <td>
-                                {row.faith ?? 0}
-                            </td>
-                            <td>
-                                {row.intelligence ?? 0}
-                            </td>
-                            <td>
-                                {row.arcane ?? 0}
-                            </td> */}
-                            <td align="right" className="img-container">
-                                <img src={row.image ? row.image : ''} alt="potato" />
-                            </td>
-                            <td align="right">
-                                <div className="checkbox-container">
-                                    <input
-                                        type="checkbox"
-                                        id={row.id}
-                                        className="checkbox-custom"
-                                        checked={row.checked || false}
-                                        onChange={() => handleCheckboxChange(row.id)}
-                                    />
-                                </div>
-                            </td>
-                            <td>
-                                <textarea
-                                    value={row.comment}
-                                    onChange={(e) => handleCommentChanged(row.id, e.target.value)}
-                                    className="comment-input"
-                                />
-                            </td>
-                        </tr>
+                      <tr key={row.id}>
+                        <td scope="row">{row.name}</td>
+                        <td align="right" className="img-container">
+                          <img src={row.image ? row.image : ''} alt="potato" />
+                        </td>
+                        <td align="right">
+                          <div className="checkbox-container">
+                            <input
+                              type="checkbox"
+                              id={row.id}
+                              className="checkbox-custom"
+                              checked={row.checked || false}
+                              onChange={() => handleCheckboxChange(row.id)}
+                            />
+                          </div>
+                        </td>
+                        <td>
+                          <textarea
+                            value={row.comment}
+                            onChange={(e) => handleCommentChanged(row.id, e.target.value)}
+                            className="comment-input"
+                          />
+                        </td>
+                      </tr>
                     ))}
-                </tbody>
-            </table>
-        </div >
-    )
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )
 }
 // \<input
 // type="text"

@@ -196,50 +196,97 @@ NAVIGATION
 
 /* MOBILE */
 @media (max-width: 768px) {
-    .App {
-      text-align: left; /* Adjust alignment for mobile */
-    }
+  .App {
+    text-align: left; /* Adjust alignment for mobile */
+    padding-top: 60px; /* Add padding to the top of the component to accommodate the fixed navbar */
+  }
 
-    .App-logo {
-      height: 20vmin; /* Adjust logo size for mobile */
-    }
+  .App-logo {
+    height: 20vmin; /* Adjust logo size for mobile */
+  }
 
-    .App-header {
-      min-height: 80vh; /* Adjust header height for mobile */
-    }
+  .App-header {
+    min-height: 80vh; /* Adjust header height for mobile */
+  }
 
-    .navbar {
-      font-size: 1em; /* Adjust font size for mobile */
-    }
+  .navbar {
+    font-size: 1em; /* Adjust font size for mobile */
+    position: fixed; /* Set navbar to have a fixed position */
+    top: 0; /* Position navbar at the top of the viewport */
+    width: 100%; /* Make navbar full width */
+    background-color: #333; /* Set background color for navbar */
+    z-index: 1000; /* Ensure navbar is above other content */
+  }
 
-    .navbar li {
-      display: block;
-      margin: 10px 0;
-    }
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Center the list items in mobile view */
+  }
 
-    .navbar li a {
-      display: block; /* Make navbar links block for mobile */
-      margin: 10px 0; /* Adjust margin for mobile */
-    }
+  .navbar li {
+    display: inline; /* Ensure list items display inline */
+    margin: 0 10px; /* Adjust margin for mobile */
+  }
 
-    .action-button,
-    .save-button {
-      padding: 8px 16px; /* Adjust button padding for mobile */
-      font-size: 14px; /* Adjust button font size for mobile */
-    }
+  .navbar li:not(:last-child) {
+    margin-right: 10px; /* Add margin between menu items except for the last one */
+  }
 
-    .checkbox-container input[type="checkbox"] {
-      width: 20px; /* Adjust checkbox size for mobile */
-      height: 20px; /* Adjust checkbox size for mobile */
-    }
+  .navbar li a {
+    display: inline; /* Make navbar links block for mobile */
+    margin: 10px 0; /* Adjust margin for mobile */
+    color: white; /* Set text color for navbar links */
+    text-decoration: none; /* Remove underline from navbar links */
+  }
 
-    .checkbox-container input[type="checkbox"]::before {
-      width: 20px; /* Adjust checkbox size for mobile */
-      height: 20px; /* Adjust checkbox size for mobile */
-    }
+  .table-container {
+    padding: 5px;
+    margin-top: 130px; /* Add margin-top to accommodate fixed navbar and button container */
+    padding-top: 5px; /* Add padding to the top of the content */
+    padding-bottom: 10px; /* Add padding to the bottom of the content */
+  }
 
-    .comment-input {
-      width: calc(100% - 20px); /* Adjust comment input width for mobile */
-      height: 80px; /* Adjust comment input height for mobile */
-    }
+  .button-container {
+    position: fixed; /* Set button container to have a fixed position */
+    top: 60px; /* Position button container right under the navbar */
+    left: 20px; /* Adjust position of the button container */
+    z-index: 1000; /* Ensure button container is above other content */
+    display: flex; /* Use flexbox to display buttons side by side */
+    align-items: center; /* Align buttons vertically */
+  }
+
+  .action-button,
+  .save-button {
+    padding: 8px 16px; /* Adjust button padding for mobile */
+    font-size: 14px; /* Adjust button font size for mobile */
+  }
+
+  .save-button {
+    background-color: #4CAF50;
+    margin-right: 5px; /* Add margin between buttons */
+  }
+
+  .show-checked-button {
+    background-color: #249fc1;
+    color: white;
+    border: none;
+    margin-left: 5px; /* Add margin between buttons */
+  }
+
+  .checkbox-container input[type="checkbox"] {
+    width: 20px; /* Adjust checkbox size for mobile */
+    height: 20px; /* Adjust checkbox size for mobile */
+  }
+
+  .checkbox-container input[type="checkbox"]::before {
+    width: 20px; /* Adjust checkbox size for mobile */
+    height: 20px; /* Adjust checkbox size for mobile */
+  }
+
+  .comment-input {
+    width: calc(100% - 20px); /* Adjust comment input width for mobile */
+    height: 80px; /* Adjust comment input height for mobile */
+  }
 }
