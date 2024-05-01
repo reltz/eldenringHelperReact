@@ -7,6 +7,8 @@ import { LocalStorageAdapter } from './adapters/local-storage-adapter';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TalismanTable } from './components/talisman-table';
+import { WeaponTable } from './components/weapon-table';
+import { ArmorTable } from './components/armor-table';
 
 
 function App() {
@@ -28,6 +30,12 @@ function App() {
             <li>
               <Link to="/talismans">Talismans</Link>
             </li>
+            <li>
+              <Link to="/weapons">Weapons</Link>
+            </li>
+            <li>
+              <Link to="/armors">Armors</Link>
+            </li>
           </ul>
         </nav>
       </div>
@@ -37,6 +45,8 @@ function App() {
           <Route path="/incantations" element={<IncantationTable db={db} />} />
           <Route path="/sorceries" element={<SorceriesTable db={db} />} />
           <Route path="/talismans" element={<TalismanTable db={db} />} />
+          <Route path="/weapons" element={<WeaponTable db={db}/>}/>
+          <Route path="/armors" element={<ArmorTable db={db}/>}/>
         </Routes>
         <ToastContainer/>
       </div>
