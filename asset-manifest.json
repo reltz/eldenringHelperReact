@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/eldenringHelperReact/static/css/main.160b624f.css",
-    "main.js": "/eldenringHelperReact/static/js/main.d95f46cf.js",
+    "main.css": "/eldenringHelperReact/static/css/main.b24bb49e.css",
+    "main.js": "/eldenringHelperReact/static/js/main.66705f2a.js",
     "static/js/453.ed3810f9.chunk.js": "/eldenringHelperReact/static/js/453.ed3810f9.chunk.js",
     "index.html": "/eldenringHelperReact/index.html",
-    "main.160b624f.css.map": "/eldenringHelperReact/static/css/main.160b624f.css.map",
-    "main.d95f46cf.js.map": "/eldenringHelperReact/static/js/main.d95f46cf.js.map",
+    "main.b24bb49e.css.map": "/eldenringHelperReact/static/css/main.b24bb49e.css.map",
+    "main.66705f2a.js.map": "/eldenringHelperReact/static/js/main.66705f2a.js.map",
     "453.ed3810f9.chunk.js.map": "/eldenringHelperReact/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.160b624f.css",
-    "static/js/main.d95f46cf.js"
+    "static/css/main.b24bb49e.css",
+    "static/js/main.66705f2a.js"
   ]
 }
