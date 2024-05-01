@@ -18,7 +18,8 @@ interface DB {
 
 export class LocalStorageAdapter {
     // private readonly key = "eldenRingHelperDB_vysa";
-    private readonly key = "eldenRingHelperDB_wis";
+    // private readonly key = "eldenRingHelperDB_wis";
+    private readonly key = "eldenRingHelperDB2";
     // private readonly key = "test22";
     private db: DB;
 
@@ -30,7 +31,7 @@ export class LocalStorageAdapter {
                 incantations: incantationsDB.items,
                 sorceries: sorceriesDB.items,
                 talismans: talismanDB.items,
-                ashes: ashesDB.items
+                ashes: ashesDB.items,
                 weapons: weaponsDB.items,
                 armors: armorDB.items
             });

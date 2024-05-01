@@ -49,7 +49,7 @@ function App() {
           <Route path="/incantations" element={<IncantationTable db={db} />} />
           <Route path="/sorceries" element={<SorceriesTable db={db} />} />
           <Route path="/talismans" element={<TalismanTable db={db} />} />
-          <Route path="/ashes-of-wasr" element={<AshesTable db={db}/>}/>
+          <Route path="/ashes-of-war" element={<AshesTable db={db}/>}/>
           <Route path="/weapons" element={<WeaponTable db={db}/>}/>
           <Route path="/armors" element={<ArmorTable db={db}/>}/>
         </Routes>
