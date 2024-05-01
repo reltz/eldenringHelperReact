@@ -2,6 +2,7 @@ import { Item } from "../components/table";
 import sorceriesDB from "../data/sorceries.json";
 import incantationsDB from "../data/incantations.json";
 import talismanDB from "../data/talisman.json"
+import ashesDB from "../data/ashes.json";
 import weaponsDB from "../data/weapons.json"
 import armorDB from "../data/armor.json";
 
@@ -9,6 +10,7 @@ interface DB {
     sorceries: Item[];
     incantations: Item[];
     talismans: Item[];
+    ashes: Item[];
     weapons: Item[];
     armors: Item[];
     character: string;
@@ -17,7 +19,7 @@ interface DB {
 export class LocalStorageAdapter {
     // private readonly key = "eldenRingHelperDB_vysa";
     private readonly key = "eldenRingHelperDB_wis";
-    // private readonly key = "test2";
+    // private readonly key = "test22";
     private db: DB;
 
     constructor() {
@@ -28,6 +30,7 @@ export class LocalStorageAdapter {
                 incantations: incantationsDB.items,
                 sorceries: sorceriesDB.items,
                 talismans: talismanDB.items,
+                ashes: ashesDB.items
                 weapons: weaponsDB.items,
                 armors: armorDB.items
             });
@@ -53,6 +56,10 @@ export class LocalStorageAdapter {
 
     public getTaslismans(): Item[] {
         return this.db.talismans;
+    }
+
+    public getAshes(): Item[] {
+        return this.db.ashes;
     }
 
     public getWeapons(): Item[] {
@@ -89,6 +96,11 @@ export class LocalStorageAdapter {
     }
 
     private persist(): void {
+        localStorage.setItem(this.key, JSON.stringify(this.db));
+    }
+
+    public saveAshes(ashes: Item[]) {
+        this.db.ashes = ashes;
         localStorage.setItem(this.key, JSON.stringify(this.db));
     }
 }
