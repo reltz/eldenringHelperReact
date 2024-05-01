@@ -17,10 +17,7 @@ interface DB {
 }
 
 export class LocalStorageAdapter {
-    // private readonly key = "eldenRingHelperDB_vysa";
-    // private readonly key = "eldenRingHelperDB_wis";
-    private readonly key = "eldenRingHelperDB2";
-    // private readonly key = "test22";
+    private readonly key = "eldenRingHelperDB";
     private db: DB;
 
     constructor() {
