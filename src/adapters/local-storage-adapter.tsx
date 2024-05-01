@@ -13,92 +13,145 @@ interface DB {
     ashes: Item[];
     weapons: Item[];
     armors: Item[];
-    character: string;
 }
 
 export class LocalStorageAdapter {
     private readonly key = "eldenRingHelperDB";
-    private db: DB;
+    private readonly charactersKey = "eldenRingHelperCharacters";
+
+    private db: DB | undefined;
+    private charactersDB: string[] = [];
+    private currentDBKey: string= "";
 
     constructor() {
-        let dbString = localStorage.getItem(this.key);
-
-        if(!dbString) {
-            dbString = JSON.stringify({
-                incantations: incantationsDB.items,
-                sorceries: sorceriesDB.items,
-                talismans: talismanDB.items,
-                ashes: ashesDB.items,
-                weapons: weaponsDB.items,
-                armors: armorDB.items
-            });
-            localStorage.setItem(this.key, dbString)
+        const charactersString = localStorage.getItem(this.charactersKey);
+        if (charactersString) {
+            const characters: string[] = JSON.parse(charactersString);
+            this.charactersDB = characters;
+        } else {
+            localStorage.setItem(this.charactersKey, JSON.stringify([]));
         }
 
-        const dbParsed = JSON.parse(dbString);
+        const current = localStorage.getItem(this.currentDBKey);
+        if(current) {
+            this.db = JSON.parse(current);
+        }
+        if (!this.db) {
+            // Initialize an empty DB if not found
+            this.db = {
+                sorceries: [],
+                incantations: [],
+                talismans: [],
+                ashes: [],
+                weapons: [],
+                armors: []
+            };
+        }
+    }
 
-        // if data change -> implement migration
-        // if(!dbParsed.version || dbParsed.version < 1.0) {
-        //     // migrate data shape!!
-        // }
-        this.db = dbParsed;
+    public setCurrentDB(character: string) {
+        this.currentDBKey = `${this.key}_${character}`;
+        console.log(`current db key = ${this.currentDBKey}`);
+        const dbString = localStorage.getItem(this.currentDBKey);
+        if(dbString){
+            console.log("found db!");
+            this.db = JSON.parse(dbString);
+            console.info(this.db);
+        } else {
+            console.log("creating new character db!")
+            this.db = {
+                armors: armorDB.items as any,
+                incantations: incantationsDB.items as any,
+                sorceries: sorceriesDB.items as any,
+                ashes: ashesDB.items as any,
+                talismans: talismanDB.items as any,
+                weapons: weaponsDB.items as any,
+            }
+            this.persist();
+        }
+    }
+
+    public getCharacters(): string[] {
+        return this.charactersDB;
+    }
+
+
+    public saveCharacter(name: string): void {
+        this.charactersDB.push(name);
+        localStorage.setItem(this.charactersKey, JSON.stringify(this.charactersDB));
     }
 
     public getIncantations(): Item[] {
-        return this.db.incantations;
+        console.info('getting incantations')
+        console.log(this.db?.incantations);
+        return this.db?.incantations || [];
     }
 
     public getSorceries(): Item[] {
-        return this.db.sorceries;
+        return this.db?.sorceries || [];
     }
 
     public getTaslismans(): Item[] {
-        return this.db.talismans;
+        return this.db?.talismans || [];
     }
 
     public getAshes(): Item[] {
-        return this.db.ashes;
+        return this.db?.ashes || [];
     }
 
     public getWeapons(): Item[] {
-        return this.db.weapons;
+        return this.db?.weapons || [];
     }
 
     public getArmors(): Item[] {
-        return this.db.armors;
+        return this.db?.armors || [];
     }
-    
+
     public saveIncantations(incantations: Item[]) {
-        this.db.incantations = incantations;
-        this.persist()
+        if (this.db) {
+            this.db.incantations = incantations;
+            this.persist();
+        }
     }
 
     public saveSorceries(sorceries: Item[]) {
-        this.db.sorceries = sorceries;
-        this.persist()
+        if (this.db) {
+            this.db.sorceries = sorceries;
+            this.persist()
+        }
     }
 
     public saveTalismans(talismans: Item[]) {
-        this.db.talismans = talismans;
-        this.persist()
+        if (this.db) {
+            this.db.talismans = talismans;
+            this.persist()
+        }
     }
 
     public saveWeapons(weapons: Item[]) {
-        this.db.weapons = weapons;
-        this.persist()
+        if (this.db) {
+            this.db.weapons = weapons;
+            this.persist()
+        }
     }
 
     public saveArmors(armors: Item[]) {
-        this.db.armors = armors;
-        this.persist()
-    }
-
-    private persist(): void {
-        localStorage.setItem(this.key, JSON.stringify(this.db));
+        if (this.db) {
+            this.db.armors = armors;
+            this.persist()
+        }
     }
 
     public saveAshes(ashes: Item[]) {
-        this.db.ashes = ashes;
-        localStorage.setItem(this.key, JSON.stringify(this.db));
+        if (this.db) {
+            this.db.ashes = ashes;
+            localStorage.setItem(this.key, JSON.stringify(this.db));
+        }
+    }
+
+    private persist(): void {
+        if (this.currentDBKey) {
+            localStorage.setItem(this.currentDBKey, JSON.stringify(this.db));
+        }
     }
 }
